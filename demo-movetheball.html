@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>movetheball</title>
+  </head>
+  <body>
+    <div
+      style="
+        position: relative;
+        width: 1000px;
+        height: 500px;
+        border: 1px solid black;
+      "
+    >
+      <div
+        id="ball1"
+        style="
+          z-index: 5;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          border-radius: 50%;
+          background: green;
+        "
+      ></div>
+
+      <div
+        id="ball2"
+        style="
+          z-index: 5;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          border-radius: 50%;
+          background: red;
+        "
+      ></div>
+    </div>
+    <script>
+      function startball(params) {
+        const ball = document.getElementById(params.id);
+        ball.style.width = params.diameter + "px";
+        ball.style.height = params.diameter + "px";
+        let velocityX = params.velocityX;
+        let velocityY = params.velocityY;
+        let positionX = 0;
+        let positionY = 0;
+        const Xmin = 0;
+//html elements position starts from top left edge, 
+//so that is why we account for the size of the ball
+//i.e. width and height
+        const Xmax = 1000 - params.diameter;  
+        const Ymin = 0;                       
+        const Ymax = 500 - params.diameter;
+
+        return function moveBall() {
+          positionX = positionX + velocityX;
+          positionY = positionY + velocityY;
+
+          if (positionX <= 0 || positionX >= Xmax) {
+            velocityX = -velocityX;
+          }
+          if (positionY <= 0 || positionY >= Ymax) {
+            velocityY = -velocityY;
+          }
+
+          ball.style.top = positionY + "px";
+          ball.style.left = positionX + "px";
+        };
+      }
+
+      setInterval(
+        startball({ id: "ball1", velocityX: 3, velocityY: 5, diameter: 50 }),
+        10
+      );
+      setInterval(
+        startball({ id: "ball2", velocityX: 5, velocityY: 7, diameter: 100 }),
+        10
+      );
+    </script>
+  </body>
+</html>
