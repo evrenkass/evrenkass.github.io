@@ -1,0 +1,25 @@
+.grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.project-image {
+  border-radius: 10px;
+  width: 60%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: white;
+  text-decoration: underline;
+}
